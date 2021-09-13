@@ -1,6 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// sigmoid activation function
+// is necessary to determine the value of the weights (synaptics)
 vector<vector<double>> sigmoid(vector<vector<double>> matrix) {
   vector<vector<double>> result;
   for (int i=0; i<matrix.size(); i++) {
@@ -13,6 +15,7 @@ vector<vector<double>> sigmoid(vector<vector<double>> matrix) {
   return result;
 }
 
+// derivative of sigmoid function
 vector<vector<double>> derivative_sigmoid(vector<vector<double>> matrix) {
   vector<vector<double>> result;
   for (int i=0; i<matrix.size(); i++) {
@@ -25,6 +28,7 @@ vector<vector<double>> derivative_sigmoid(vector<vector<double>> matrix) {
   return result;
 }
 
+// function dot product
 vector<vector<double>> dot_product(vector<vector<double>> matrix1, vector<vector<double>> matrix2) {
   vector<vector<double>> result;
   for (int i=0; i<matrix1.size(); i++) {
@@ -41,6 +45,7 @@ vector<vector<double>> dot_product(vector<vector<double>> matrix1, vector<vector
   return result;
 }
 
+// function transpose matrix
 vector<vector<double>> transpose(vector<vector<double>> matrix) {
   vector<vector<double>> result;
   for (int i=0; i<matrix.size(); i++) {
@@ -53,6 +58,7 @@ vector<vector<double>> transpose(vector<vector<double>> matrix) {
   return result;
 }
 
+// rests
 vector<vector<double>> multiplication(vector<vector<double>> matrix1, vector<vector<double>> matrix2) {
   vector<vector<double>> result;
   for (int i=0; i<matrix1.size(); i++) {
@@ -106,10 +112,14 @@ void print(vector<vector<double>> matrix) {
 
 
 int main(){
+
+  // initialize input data
   vector<vector<double>> inputs {{0, 1, 1}, {0, 0, 1}, {1, 1, 1}, {1, 0, 1}};
 
+  // output data
   vector<vector<double>> outputs {{0}, {0}, {1}, {1}};
 
+  // initialize weights (synaptics) and give random values for each
   vector<vector<double>> synaptics;
 
   for (int i=0; i<inputs[0].size(); i++) {
@@ -118,19 +128,25 @@ int main(){
     synaptics.push_back(value);
   }
 
+  // number of trainings
   int training_number = 20000;
 
   vector<vector<double>> learned_output;
 
   for (int i=0; i<training_number; i++) {
 
+    //direct distribution
     vector<vector<double>> input_layer = inputs;
     learned_output = sigmoid(dot_product(input_layer, synaptics));
 
+    // how wrong were we?
     vector<vector<double>> error = subtraction(outputs, learned_output);
 
+    // multiply this with the slope of the weights (synaptics)
+    // based on "learned_output" values
     vector<vector<double>> delta = multiplication(error, derivative_sigmoid(learned_output));
 
+    // update weights (synaptics)
     synaptics = addition(synaptics, dot_product(transpose(input_layer), delta));
   }
 
@@ -145,4 +161,3 @@ int main(){
 
   return 0;
 }
-
