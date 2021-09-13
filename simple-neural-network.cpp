@@ -3,112 +3,27 @@ using namespace std;
 
 // sigmoid activation function
 // is necessary to determine the value of the weights (synaptics)
-vector<vector<double>> sigmoid(vector<vector<double>> matrix) {
-  vector<vector<double>> result;
-  for (int i=0; i<matrix.size(); i++) {
-    vector<double> row;
-    for (int j=0; j<matrix[i].size(); j++) {
-      row.push_back(1 / (1 + exp(-matrix[i][j])));
-    }
-    result.push_back(row);
-  }
-  return result;
-}
+vector<vector<double>> sigmoid(vector<vector<double>> matrix);
 
 // derivative of sigmoid function
-vector<vector<double>> derivative_sigmoid(vector<vector<double>> matrix) {
-  vector<vector<double>> result;
-  for (int i=0; i<matrix.size(); i++) {
-    vector<double> row;
-    for (int j=0; j<matrix[i].size(); j++) {
-      row.push_back(matrix[i][j] * (1 - matrix[i][j]));
-    }
-    result.push_back(row);
-  }
-  return result;
-}
+vector<vector<double>> derivative_sigmoid(vector<vector<double>> matrix);
 
 // function dot product
-vector<vector<double>> dot_product(vector<vector<double>> matrix1, vector<vector<double>> matrix2) {
-  vector<vector<double>> result;
-  for (int i=0; i<matrix1.size(); i++) {
-    vector<double> row;
-    for (int j=0; j<matrix2[0].size(); j++) {
-      double sum = 0;
-      for (int k=0; k<matrix1[i].size(); k++) {
-        sum += matrix1[i][k] * matrix2[k][j];
-      }
-      row.push_back(sum);
-    }
-    result.push_back(row);
-  }
-  return result;
-}
+vector<vector<double>> dot_product(vector<vector<double>> matrix1, vector<vector<double>> matrix2);
 
 // function transpose matrix
-vector<vector<double>> transpose(vector<vector<double>> matrix) {
-  vector<vector<double>> result;
-  for (int i=0; i<matrix.size(); i++) {
-    vector<double> row;
-    for (int j=0; j<matrix[i].size(); j++) {
-      row.push_back(matrix[j][i]);
-    }
-    result.push_back(row);
-  }
-  return result;
-}
+vector<vector<double>> transpose(vector<vector<double>> matrix);
 
 // rests
-vector<vector<double>> multiplication(vector<vector<double>> matrix1, vector<vector<double>> matrix2) {
-  vector<vector<double>> result;
-  for (int i=0; i<matrix1.size(); i++) {
-    vector<double> row;
-    for (int j=0; j<matrix1[i].size(); j++) {
-      row.push_back(matrix1[i][j] * matrix2[i][j]);
-    }
-    result.push_back(row);
-  }
-  return result;
-}
+vector<vector<double>> multiplication(vector<vector<double>> matrix1, vector<vector<double>> matrix2);
 
-vector<vector<double>> addition(vector<vector<double>> matrix1, vector<vector<double>> matrix2) {
-  vector<vector<double>> result;
-  for (int i=0; i<matrix1.size(); i++) {
-    vector<double> row;
-    for (int j=0; j<matrix1[i].size(); j++) {
-      row.push_back(matrix1[i][j] + matrix2[i][j]);
-    }
-    result.push_back(row);
-  }
-  return result;
-}
+vector<vector<double>> addition(vector<vector<double>> matrix1, vector<vector<double>> matrix2);
 
-vector<vector<double>> subtraction(vector<vector<double>> matrix1, vector<vector<double>> matrix2) {
-  vector<vector<double>> result;
-  for (int i=0; i<matrix1.size(); i++) {
-    vector<double> row;
-    for (int j=0; j<matrix1[i].size(); j++) {
-      row.push_back(matrix1[i][j] - matrix2[i][j]);
-    }
-    result.push_back(row);
-  }
-  return result;
-}
+vector<vector<double>> subtraction(vector<vector<double>> matrix1, vector<vector<double>> matrix2);
 
-double random(double min, double max) {
-    double coeficiente = (double)rand() / RAND_MAX;
-    return min + coeficiente * (max - min);
-}
+double random(double min, double max);
 
-void print(vector<vector<double>> matrix) {
-  for (int i=0; i<matrix.size(); i++) {
-    for (int j=0; j<matrix[i].size(); j++) {
-      cout<<matrix[i][j]<<" ";
-    }
-    cout<<endl;
-  }
-  cout<<endl;
-}
+void print(vector<vector<double>> matrix);
 
 
 int main(){
@@ -160,4 +75,118 @@ int main(){
   print(new_output);
 
   return 0;
+}
+
+
+
+
+
+
+
+
+
+
+/* ----- function definitions ----- */
+
+vector<vector<double>> sigmoid(vector<vector<double>> matrix) {
+  vector<vector<double>> result;
+  for (int i=0; i<matrix.size(); i++) {
+    vector<double> row;
+    for (int j=0; j<matrix[i].size(); j++) {
+      row.push_back(1 / (1 + exp(-matrix[i][j])));
+    }
+    result.push_back(row);
+  }
+  return result;
+}
+
+vector<vector<double>> derivative_sigmoid(vector<vector<double>> matrix) {
+  vector<vector<double>> result;
+  for (int i=0; i<matrix.size(); i++) {
+    vector<double> row;
+    for (int j=0; j<matrix[i].size(); j++) {
+      row.push_back(matrix[i][j] * (1 - matrix[i][j]));
+    }
+    result.push_back(row);
+  }
+  return result;
+}
+
+vector<vector<double>> dot_product(vector<vector<double>> matrix1, vector<vector<double>> matrix2) {
+  vector<vector<double>> result;
+  for (int i=0; i<matrix1.size(); i++) {
+    vector<double> row;
+    for (int j=0; j<matrix2[0].size(); j++) {
+      double sum = 0;
+      for (int k=0; k<matrix1[i].size(); k++) {
+        sum += matrix1[i][k] * matrix2[k][j];
+      }
+      row.push_back(sum);
+    }
+    result.push_back(row);
+  }
+  return result;
+}
+
+vector<vector<double>> transpose(vector<vector<double>> matrix) {
+  vector<vector<double>> result;
+  for (int i=0; i<matrix.size(); i++) {
+    vector<double> row;
+    for (int j=0; j<matrix[i].size(); j++) {
+      row.push_back(matrix[j][i]);
+    }
+    result.push_back(row);
+  }
+  return result;
+}
+
+vector<vector<double>> multiplication(vector<vector<double>> matrix1, vector<vector<double>> matrix2) {
+  vector<vector<double>> result;
+  for (int i=0; i<matrix1.size(); i++) {
+    vector<double> row;
+    for (int j=0; j<matrix1[i].size(); j++) {
+      row.push_back(matrix1[i][j] * matrix2[i][j]);
+    }
+    result.push_back(row);
+  }
+  return result;
+}
+
+vector<vector<double>> addition(vector<vector<double>> matrix1, vector<vector<double>> matrix2) {
+  vector<vector<double>> result;
+  for (int i=0; i<matrix1.size(); i++) {
+    vector<double> row;
+    for (int j=0; j<matrix1[i].size(); j++) {
+      row.push_back(matrix1[i][j] + matrix2[i][j]);
+    }
+    result.push_back(row);
+  }
+  return result;
+}
+
+vector<vector<double>> subtraction(vector<vector<double>> matrix1, vector<vector<double>> matrix2) {
+  vector<vector<double>> result;
+  for (int i=0; i<matrix1.size(); i++) {
+    vector<double> row;
+    for (int j=0; j<matrix1[i].size(); j++) {
+      row.push_back(matrix1[i][j] - matrix2[i][j]);
+    }
+    result.push_back(row);
+  }
+  return result;
+}
+
+double random(double min, double max) {
+    double coeficiente = (double)rand() / RAND_MAX;
+    return min + coeficiente * (max - min);
+}
+
+void print(vector<vector<double>> matrix) {
+  for (int i=0; i<matrix.size(); i++) {
+    for (int j=0; j<matrix[i].size(); j++) {
+      cout<<matrix[i][j]<<" ";
+    }
+    cout<<endl;
+  }
+  cout<<endl;
 }
