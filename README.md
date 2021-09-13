@@ -25,3 +25,29 @@ input name | inputs | outputs
 input-5 | [1, 0, 0] | ?       
 
 ----------------------------------------------------------------------
+### _result:_
+If we run the `simple-neural-network.cpp` program, we will get next outputs:
+```
+output values after trainings
+0.00722608
+0.00496353
+0.992815
+0.98955
+
+output value of new input [1, 0, 0]
+0.999947
+```
+First four numbers are the trained output values.\
+As you may see, `0.00722608` and `0.00496353` are close to zero.\
+While `0.992815` and `0.98955` are close to one.\
+This means that we have trained our neurons for the expected outputs in the table [0] [0] [1] [1].\
+
+Now, the last number shows the result of our task.\
+`0.999947` is close to one, the output of `input-5` will be one.
+
+### _solution:_
+input name | inputs | outputs
+---------- | ------ | -------
+input-5 | [1, 0, 0] | [1]
+
+----------------------------------------------------------------------
