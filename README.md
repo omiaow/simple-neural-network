@@ -51,3 +51,8 @@ input name | inputs | outputs
 input-5 | [1, 0, 0] | [1]
 
 ----------------------------------------------------------------------
+## program
+To read the code, you need to understand some mathematical operations as: __sigmoid__, __derivative of sigmoid__, __dot product__, __matrix transpose__, etc.\
+If you know them, you can follow the [simple-neural-network.cpp code](https://github.com/omiaow/simple-neural-network/blob/main/simple-neural-network.cpp) reading the comments above.
+
+## Thank you for attention!
